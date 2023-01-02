@@ -19,6 +19,22 @@ def print_list(head):
 
     print('None')
 
-keys = [1,2,3,4,5]
-linked_list = construct(keys)
+def append_list(head,key):
+    current = head
+    node = Node(key)
+
+    if current is None:
+        head = node
+    else:
+        while current.next:
+            current = current.next
+        current.next = node
+
+    return head
+
+
+linked_list = construct( [1,2,3,4,5])
+print_list(linked_list)
+
+append_list(linked_list, 6)
 print_list(linked_list)
