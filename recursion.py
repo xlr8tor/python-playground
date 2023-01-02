@@ -5,7 +5,6 @@ def counter(int):
         return
     counter(int - 1)
 
-counter(10)
 
 def factorial(int):
     if int == 1:
@@ -13,7 +12,7 @@ def factorial(int):
     else:
         return int * factorial(int - 1)
 
-print(factorial(5))
+
 
 def palindrome(s,start,end):
     if start >= end:
@@ -25,4 +24,26 @@ def palindrome(s,start,end):
 s = "madam"
 
 
-    
+def sum_arr(arr):
+    if len(arr) == 0:
+        return 0
+    return arr[0] + sum_arr(arr[1:])
+
+def increment(arr):
+    if len(arr) == 0:
+        return 0
+    return 1 + increment(arr[1:])
+
+
+def maximum(arr):
+    if len(arr) == 2:
+        return arr[0] if arr[0] > arr[1] else arr[1]
+    sub_max = maximum(arr[1:])
+    return arr[0] if arr[0] > sub_max else sub_max
+
+def reverse_string(chars):
+    if chars == '':
+        return ''
+    return reverse_string(chars[1:]) + chars[0]
+
+print(reverse_string("practical"))
