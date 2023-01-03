@@ -47,3 +47,14 @@ def reverse_string(chars):
     return reverse_string(chars[1:]) + chars[0]
 
 print(reverse_string("practical"))
+
+
+def fibonacci(int):
+    if int == 0:
+        return 0
+    if int == 1:
+        return 1
+    return fibonacci(int - 2) + fibonacci(int - 1)
+
+def number_palindrome(integer):
+    str_int = str(integer)
