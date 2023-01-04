@@ -18,3 +18,5 @@ def binary_search(arr, int):
     return result
 
 print(binary_search([1,2,3,4,5,6,7],0))
+
+

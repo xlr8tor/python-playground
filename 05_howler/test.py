@@ -43,3 +43,45 @@ def test_cmd_upper():
     out = getoutput(f'{prg} "How dare you steal that car!"')
    
     assert out.strip() == "How dare you steal that car!".upper()
+
+# --------------------------------------------------
+def test_text_outfile():
+    """Test STDIN/outfile"""
+
+    out_file = random_string()
+    if os.path.isfile(out_file):
+        os.remove(out_file)
+
+    try:
+        out = getoutput(f'{prg} {out_flag()} {out_file} "foo bar baz"')
+        assert out.strip() == ''
+        assert os.path.isfile(out_file)
+        text = open(out_file).read().rstrip()
+        assert text == 'FOO BAR BAZ'
+    finally:
+        if os.path.isfile(out_file):
+            os.remove(out_file)
+
+def test_infile_outfile():
+    """Test infile/outfile"""
+
+    for expected_file in os.listdir("test-outs"):
+        try:
+            out_file = random_string()
+            if os.path.isfile(out_file):
+                os.remove(out_file)
+
+            basename = os.path.basename(expected_file)
+            in_file = os.path.join('../inputs', basename)
+
+            out = getoutput(f'{prg} {in_file} {out_flag()} {out_file}')
+            assert out.strip() == ''
+            produced = open(out_file).read().rstrip()
+            expected = open(os.path.join('test-outs',expected_file)).read().rstrip()
+            assert produced == expected
+        
+        finally:
+            if os.path.isfile(out_file):
+                os.remove(out_file)
+
+            
